@@ -7,6 +7,12 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Burnable.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
+/**
+ * @title AssetTokenization
+ * @author Ashees Kumar
+ * @notice This contract is the main contract for performing minting and burning NFTs and rest of the functionalities.
+ */
+
 contract MyNFTToken is ERC1155, Ownable, ERC1155Burnable, ERC20 {
     /// @dev  Struct to store the users record
     struct userRecord {
@@ -170,6 +176,7 @@ contract MyNFTToken is ERC1155, Ownable, ERC1155Burnable, ERC20 {
         whiteListedUsers[_accountAddress] = true;
     }
 
+    /// @dev functionality for buying and redeeming the NFT
     function buyAndRedeemTimeFrame(
         address _accountAddress,
         uint256 _valueOfBlackNft,
@@ -326,13 +333,15 @@ contract MyNFTToken is ERC1155, Ownable, ERC1155Burnable, ERC20 {
             }
         }
     }
-
+    
+    /// @dev function to get the amount of tokens owned by the user
     function getOwnerTokenValue(
         address _address
     ) public view returns (uint256) {
         return tokensOwned[_address];
     }
-
+    
+    /// @dev function to get the number of NFTs owned by the user
     function getNumberOfNfts(
         address _accountAddress
     ) public view returns (uint256) {
